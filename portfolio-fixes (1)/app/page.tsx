@@ -24,7 +24,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import Particles from "@/components/Particles"
+
 import ScrollFloat from "@/components/scroll-float"
 import ShinyText from "@/components/shiny-text"
 import LoadingScreen from "@/components/loading-screen"
@@ -142,118 +142,101 @@ export default function Portfolio() {
 
         {/* Hero Section - Fully responsive */}
         <section
-  id="hero"
-  className="min-h-screen flex items-center justify-center px-2 sm:px-4 lg:px-8 relative bg-[#fafafa]"
->
-  {/* Particle Background */}
-  <div className="absolute inset-0 z-0">
-    <Particles
-      particleColors={['#d1d5db', '#F5A623']}
-      particleCount={500}
-      particleSpread={5}
-      speed={0.1}
-      particleBaseSize={100}
-      moveParticlesOnHover={true}
-      alphaParticles={false}
-      disableRotation={false}
-    />
-  </div>
-
-  {/* Hero Content */}
-  <motion.div
-    initial={{ opacity: 0, y: 50 }}
-    animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 50 }}
-    transition={{ duration: 0.8, delay: 0.2 }}
-    className="text-center max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto relative z-10 px-4"
-  >
-    {/* Orange Circle Logo */}
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: showContent ? 1 : 0, scale: showContent ? 1 : 0.8 }}
-      transition={{ duration: 0.8, delay: 0.4 }}
-      className="mb-6 sm:mb-8"
+      id="hero"
+      className="min-h-screen flex items-center justify-center px-2 sm:px-4 lg:px-8 relative bg-[#fafafa]"
     >
-      <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-[#F5A623] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 md:mb-8 shadow-lg">
-        <span className="text-white text-lg sm:text-xl md:text-2xl font-bold">AS</span>
-      </div>
-    </motion.div>
 
-    {/* Name with ShinyText animation */}
-    {showContent && (
-      <div className="mb-4 sm:mb-6">
-        <ShinyText
-          text="ABRAHAM SAMUEL"
-          disabled={false}
-          speed={3}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 tracking-wide"
-        />
-      </div>
-    )}
-
-    {/* Proprietor Label */}
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 30 }}
-      transition={{ duration: 0.8, delay: 0.6 }}
-      className="mb-4 sm:mb-6 flex items-center justify-center"
-    >
-      <div className="flex items-center space-x-2 sm:space-x-4">
-        <div className="w-8 sm:w-12 md:w-16 h-0.5 bg-[#F5A623]"></div>
-        <span className="text-sm sm:text-base md:text-lg text-[#F5A623] font-bold tracking-widest">
-          PROPRIETOR
-        </span>
-        <div className="w-8 sm:w-12 md:w-16 h-0.5 bg-[#F5A623]"></div>
-      </div>
-    </motion.div>
-
-    {/* Company Name */}
-    <motion.p
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 30 }}
-      transition={{ duration: 0.8, delay: 0.7 }}
-      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-gray-600 tracking-wide mb-4 sm:mb-6"
-    >
-      Casa Grande PropCare
-    </motion.p>
-
-    {/* Quote */}
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 30 }}
-      transition={{ duration: 0.8, delay: 0.8 }}
-      className="mb-8 sm:mb-12 relative px-2"
-    >
-      <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#F5A623] font-light italic relative z-10">
-        Facilities Managed. Peace Delivered.
-      </p>
-    </motion.div>
-
-    {/* Call to Action Buttons */}
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 30 }}
-      transition={{ duration: 0.8, delay: 1.0 }}
-      className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center"
-    >
-      <Button
-        onClick={() => scrollToSection("contact")}
-        className="bg-[#F5A623] hover:bg-[#E6951F] text-white px-6 sm:px-8 py-2 sm:py-3 text-base sm:text-lg rounded-full shadow-lg border-0 w-full sm:w-auto min-h-[44px]"
+      {/* Hero Content */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 50 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="text-center max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto relative z-10 px-4"
       >
-        📞 Call Now
-      </Button>
-      <Button
-        asChild
-        variant="outline"
-        className="border-2 border-[#F5A623] text-[#F5A623] hover:bg-[#FEF7E6] px-6 sm:px-8 py-2 sm:py-3 text-base sm:text-lg rounded-full bg-transparent w-full sm:w-auto min-h-[44px]"
-      >
-        <a href="mailto:abrahamsamuel562004@gmail.com?subject=Quote%20Request%20from%20Portfolio">
-          📋 Get Quote
-        </a>
-      </Button>
-    </motion.div>
-  </motion.div>
-</section>
+        {/* Logo */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: showContent ? 1 : 0, scale: showContent ? 1 : 0.8 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mb-6 sm:mb-8"
+        >
+          <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-[#F5A623] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 md:mb-8 shadow-lg">
+            <span className="text-white text-lg sm:text-xl md:text-2xl font-bold">AS</span>
+          </div>
+        </motion.div>
 
+        {/* Name */}
+        {showContent && (
+          <div className="mb-4 sm:mb-6">
+            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-black tracking-wide">
+              ABRAHAM SAMUEL
+            </div>
+          </div>
+        )}
+
+        {/* Title */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 30 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="mb-4 sm:mb-6 flex items-center justify-center"
+        >
+          <div className="flex items-center space-x-2 sm:space-x-4">
+            <div className="w-8 sm:w-12 md:w-16 h-0.5 bg-[#F5A623]"></div>
+            <span className="text-sm sm:text-base md:text-lg text-[#F5A623] font-bold tracking-widest">
+              PROPRIETOR
+            </span>
+            <div className="w-8 sm:w-12 md:w-16 h-0.5 bg-[#F5A623]"></div>
+          </div>
+        </motion.div>
+
+        {/* Company */}
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 30 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-black tracking-wide mb-4 sm:mb-6"
+        >
+          Casa Grande PropCare
+        </motion.p>
+
+        {/* Quote */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 30 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="mb-8 sm:mb-12 relative px-2"
+        >
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#F5A623] font-light italic relative z-10">
+            Facilities Managed. Peace Delivered.
+          </p>
+        </motion.div>
+
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 30 }}
+          transition={{ duration: 0.8, delay: 1.0 }}
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center"
+        >
+          <Button
+            onClick={() => scrollToSection("contact")}
+            className="bg-[#F5A623] hover:bg-[#E6951F] text-white px-6 sm:px-8 py-2 sm:py-3 text-base sm:text-lg rounded-full shadow-lg border-0 w-full sm:w-auto min-h-[44px]"
+          >
+            📞 Call Now
+          </Button>
+          <Button
+            asChild
+            variant="outline"
+            className="border-2 border-[#F5A623] text-[#F5A623] hover:bg-[#FEF7E6] px-6 sm:px-8 py-2 sm:py-3 text-base sm:text-lg rounded-full bg-transparent w-full sm:w-auto min-h-[44px]"
+          >
+            <a href="mailto:abrahamsamuel562004@gmail.com?subject=Quote%20Request%20from%20Portfolio">
+              📋 Get Quote
+            </a>
+          </Button>
+        </motion.div>
+      </motion.div>
+    </section>
 
         {/* About Section - Responsive */}
         <section id="about" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-white">
