@@ -1,16 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Cardo', Arial, Helvetica, sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cardo', Arial, Helvetica, sans-serif;
 }
 
 html, body {
   overflow-x: hidden;
-  font-family: "Cardo", serif;
 }
 
 @layer utilities {

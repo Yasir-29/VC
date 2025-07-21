@@ -160,33 +160,42 @@ export default function Portfolio() {
         {/* Hero Section - Fully responsive */}
         <section
       id="hero"
-      className="relative w-full flex flex-col items-center justify-start lg:min-h-screen lg:justify-center bg-white overflow-hidden"
+      className="relative flex flex-col items-center justify-start bg-white overflow-hidden sm:min-h-screen lg:justify-center sm:pt-16"
     >
-      {/* Full background image, always fully visible */}
-      <img
-        src="/images/home.png"
-        alt="Background"
-        className="absolute top-0 left-0 w-full h-full object-contain pointer-events-none select-none z-0"
-        aria-hidden="true"
-      />
-      {/* Hero Content */}
-      <div className="relative z-10 w-full flex flex-col items-center justify-center text-center py-8 sm:py-12 px-4 sm:px-8 lg:px-16">
-        {/* Avatar */}
-        <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full bg-white flex items-center justify-center mx-auto mb-6 shadow-lg border-4 border-[#F5A623]">
-          <img
-            src="/images/Avatar.png"
-            alt="Avatar"
-            className="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 object-cover rounded-full"
-          />
-        </div>
-        {/* Name */}
-        <div className="mb-4 sm:mb-6">
-          <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-black tracking-wide">
-            ABRAHAM SAMUEL
+      {/* Hero Content (always visible, now first) */}
+      <div className="relative z-10 w-full flex flex-col items-center justify-center text-center mt-20 sm:mt-8 lg:mt-12 pb-4 sm:py-20 px-4 sm:px-8 lg:px-16">
+        {/* Logo */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: showContent ? 1 : 0, scale: showContent ? 1 : 0.8 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mb-2 sm:mb-8"
+        >
+          <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-[#F5A623] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 md:mb-8 shadow-lg overflow-hidden">
+            <img
+              src="/images/avatar.png"
+              alt="Avatar Logo"
+              className="object-cover w-full h-full"
+            />
           </div>
-        </div>
+        </motion.div>
+
+        {/* Name */}
+        {showContent && (
+          <div className="mb-4 sm:mb-6">
+            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-black tracking-wide">
+              ABRAHAM SAMUEL
+            </div>
+          </div>
+        )}
+
         {/* Title */}
-        <div className="mb-4 sm:mb-6 flex items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 30 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="mb-4 sm:mb-6 flex items-center justify-center"
+        >
           <div className="flex items-center space-x-2 sm:space-x-4">
             <div className="w-8 sm:w-12 md:w-16 h-0.5 bg-[#F5A623]"></div>
             <b className="text-sm sm:text-base md:text-lg text-[#F5A623] font-bold tracking-widest">
@@ -194,34 +203,47 @@ export default function Portfolio() {
             </b>
             <div className="w-8 sm:w-12 md:w-16 h-0.5 bg-[#F5A623]"></div>
           </div>
-        </div>
+        </motion.div>
+
         {/* Company */}
-        <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-black tracking-wide mb-4 sm:mb-6">
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 30 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-black tracking-wide mb-4 sm:mb-6"
+        >
           Casa Grande PropCare
-        </div>
+        </motion.p>
+
         {/* Quote */}
-        <div className="mb-8 sm:mb-12 relative px-2">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 30 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="mb-8 sm:mb-12 relative px-2"
+        >
           <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#F5A623] font-light italic relative z-10 ">
             Facilities Managed. Peace Delivered.
           </p>
-        </div>
+        </motion.div>
+
         {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 30 }}
           transition={{ duration: 0.8, delay: 1.0 }}
-          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-16 sm:mb-24"
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-24"
         >
           <Button
             onClick={() => scrollToSection("contact")}
-            className="bg-[#F5A623] hover:bg-[#E6951F] text-white px-6 sm:px-8 py-2 sm:py-3 text-base sm:text-lg rounded-full shadow-lg border-0 w-full sm:w-auto min-h-[44px]"
+            className="bg-[#F5A623] hover:bg-[#E6951F] text-white px-6 sm:px-8 py-2 sm:py-3 text-black sm:text-lg rounded-full shadow-lg border-0 w-full sm:w-auto min-h-[44px]"
           >
             📞 Call Now
           </Button>
           <Button
             asChild
             variant="outline"
-            className="border-2 border-[#F5A623] text-[#F5A623] hover:bg-[#FEF7E6] px-6 sm:px-8 py-2 sm:py-3 text-base sm:text-lg rounded-full bg-transparent w-full sm:w-auto min-h-[44px]"
+            className="border-2 border-[#F5A623] text-black bg-[#FEF7E6]  px-6 sm:px-8 py-2 sm:py-3 text-base sm:text-lg rounded-full w-full sm:w-auto min-h-[44px]"
           >
             <a href="mailto:abrahamsamuel562004@gmail.com?subject=Quote%20Request%20from%20Portfolio">
               📋 Get Quote
@@ -229,10 +251,24 @@ export default function Portfolio() {
           </Button>
         </motion.div>
       </div>
+      {/* Background image for desktop/laptop (overlay) */}
+      <img
+        src="/images/hero1.png"
+        alt="Background"
+        className="hidden sm:block absolute top-0 left-0 w-full h-full object-contain pointer-events-none select-none z-0"
+        aria-hidden="true"
+      />
+      {/* Background image for mobile (below content, not overlay) */}
+      <img
+        src="/images/hero1.png"
+        alt="Background"
+        className="block sm:hidden w-full h-auto object-contain pointer-events-none select-none z-0 mt-2"
+        aria-hidden="true"
+      />
     </section>
 
         {/* About Section - Responsive */}
-        <section id="about" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <section id="about" className="py-6 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Section Heading */}
         <motion.div
