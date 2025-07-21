@@ -133,10 +133,10 @@ export default function Portfolio() {
         initial={{ opacity: 0 }}
         animate={{ opacity: showContent ? 1 : 0 }}
         transition={{ duration: 0.5 }}
-        className="relative min-h-screen"
+        className="relative min-h-screen pb-28 sm:pb-32 overflow-x-hidden"
       >
         {/* Logo - Responsive positioning */}
-        <div className="absolute top-2 left-2 sm:top-4 sm:left-4 z-20">
+        <div className="absolute top-2 left-2 sm:top-4 sm:left-4 z-20 flex items-center">
           <Image
             src="/images/casa-grande-logo.png"
             alt="Casa Grande PropCare Logo"
@@ -147,10 +147,10 @@ export default function Portfolio() {
         </div>
 
         {/* Contact Info - Responsive */}
-        <div className="absolute top-2 right-2 sm:top-4 sm:right-4 z-20">
+        <div className="absolute top-2 right-2 sm:top-4 sm:right-4 z-20 flex items-center h-10">
           <a
             href="tel:+919345792031"
-            className="text-gray-700 hover:text-[#F5A623] font-medium text-xs sm:text-sm md:text-base"
+            className="text-gray-700 hover:text-[#F5A623] font-medium text-xs sm:text-sm md:text-base flex items-center"
           >
             📞 <span className="hidden sm:inline">+91 9345792031</span>
             <span className="sm:hidden">Call</span>
@@ -160,86 +160,57 @@ export default function Portfolio() {
         {/* Hero Section - Fully responsive */}
         <section
       id="hero"
-      className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-2 sm:px-4 lg:px-8 relative bg-[#fafafa] overflow-hidden"
+      className="relative w-full flex flex-col items-center justify-start lg:min-h-screen lg:justify-center bg-white overflow-hidden"
     >
-      {/* Background Image */}
-      <Image
-        src="/images/chinese-city.jpg  "
-        alt="City in the clouds"
-        fill
-        className="object-cover object-center z-0"
-        priority
+      {/* Full background image, always fully visible */}
+      <img
+        src="/images/home.png"
+        alt="Background"
+        className="absolute top-0 left-0 w-full h-full object-contain pointer-events-none select-none z-0"
+        aria-hidden="true"
       />
-      {/* Overlay for readability */}
-      <div className="absolute inset-0 bg-black/40 z-10" />
-
       {/* Hero Content */}
-      <div className="relative z-20 w-full flex flex-col items-center justify-center text-center">
-        {/* Logo */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: showContent ? 1 : 0, scale: showContent ? 1 : 0.8 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mb-6 sm:mb-8"
-        >
-          <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-[#F5A623] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 md:mb-8 shadow-lg">
-            <span className="text-white text-lg sm:text-xl md:text-2xl font-bold">AS</span>
-          </div>
-        </motion.div>
-
+      <div className="relative z-10 w-full flex flex-col items-center justify-center text-center py-8 sm:py-12 px-4 sm:px-8 lg:px-16">
+        {/* Avatar */}
+        <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full bg-white flex items-center justify-center mx-auto mb-6 shadow-lg border-4 border-[#F5A623]">
+          <img
+            src="/images/Avatar.png"
+            alt="Avatar"
+            className="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 object-cover rounded-full"
+          />
+        </div>
         {/* Name */}
-        {showContent && (
-          <div className="mb-4 sm:mb-6">
-            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-black tracking-wide">
-              ABRAHAM SAMUEL
-            </div>
+        <div className="mb-4 sm:mb-6">
+          <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-black tracking-wide">
+            ABRAHAM SAMUEL
           </div>
-        )}
-
+        </div>
         {/* Title */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 30 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mb-4 sm:mb-6 flex items-center justify-center"
-        >
+        <div className="mb-4 sm:mb-6 flex items-center justify-center">
           <div className="flex items-center space-x-2 sm:space-x-4">
             <div className="w-8 sm:w-12 md:w-16 h-0.5 bg-[#F5A623]"></div>
-            <span className="text-sm sm:text-base md:text-lg text-[#F5A623] font-bold tracking-widest">
+            <b className="text-sm sm:text-base md:text-lg text-[#F5A623] font-bold tracking-widest">
               PROPRIETOR
-            </span>
+            </b>
             <div className="w-8 sm:w-12 md:w-16 h-0.5 bg-[#F5A623]"></div>
           </div>
-        </motion.div>
-
+        </div>
         {/* Company */}
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 30 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-black tracking-wide mb-4 sm:mb-6"
-        >
+        <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-black tracking-wide mb-4 sm:mb-6">
           Casa Grande PropCare
-        </motion.p>
-
+        </div>
         {/* Quote */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 30 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mb-8 sm:mb-12 relative px-2"
-        >
+        <div className="mb-8 sm:mb-12 relative px-2">
           <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#F5A623] font-light italic relative z-10 ">
             Facilities Managed. Peace Delivered.
           </p>
-        </motion.div>
-
+        </div>
         {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 30 }}
           transition={{ duration: 0.8, delay: 1.0 }}
-          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-16 sm:mb-24"
         >
           <Button
             onClick={() => scrollToSection("contact")}
@@ -269,7 +240,7 @@ export default function Portfolio() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-12 sm:mb-16"
+          className="text-center mb-12 sm:mb-16 flex flex-col items-center"
         >
           <ScrollFloat
             containerClassName="mb-4 sm:mb-6"
@@ -304,7 +275,7 @@ export default function Portfolio() {
               <img
                 src="/images/casa.webp"
                 alt="Casa Grande Facility"
-                className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full max-w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>
           </motion.div>
@@ -736,7 +707,7 @@ export default function Portfolio() {
         </section>
 
         {/* Floating Contact Buttons - Responsive */}
-        <div className="fixed bottom-3 right-3 sm:bottom-4 sm:right-4 flex flex-col gap-2 sm:gap-3 z-50">
+        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 flex flex-col gap-2 sm:gap-3 z-50 pb-[env(safe-area-inset-bottom)]">
           <a
             href="https://wa.me/919345792031"
             target="_blank"
@@ -759,14 +730,14 @@ export default function Portfolio() {
     
 
       {/* Footer Content */}
-      <footer className="relative bg-white text-gray-800 z-10 overflow-hidden">
+      <footer className="relative bg-white text-gray-800 z-10 overflow-hidden px-4 sm:px-6 lg:px-8">
         {/* SVG Background Illustration */}
         <div className="absolute bottom-0 left-0 w-full z-0 pointer-events-none select-none">
           <img src="/images/footerGraphic.svg" alt="Facilities Illustration" className="w-full" />
         </div>
 
         {/* Top Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12 pb-16 lg:pb-60 grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8 text-center lg:text-left items-start">
+        <div className="relative z-10 max-w-7xl mx-auto pt-8 sm:pt-12 pb-16 lg:pb-60 grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8 text-center lg:text-left items-start">
           {/* Column 1: Logo & Description */}
           <div className="flex flex-col items-center lg:items-start">
             <img src="/images/casa-grande-logo.png" alt="Casa Grande PropCare" className="w-32 sm:w-40 mb-4 mx-auto lg:mx-0" />
