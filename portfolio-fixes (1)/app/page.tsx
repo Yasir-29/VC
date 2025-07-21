@@ -1,13 +1,12 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useMemo } from "react"
 import { motion, useInView } from "framer-motion"
 import {
   Phone,
   Mail,
   MapPin,
   Award,
-  Building,
   PhoneIcon as WhatsappIcon,
   Facebook,
   Instagram,
@@ -15,18 +14,13 @@ import {
   Star,
   Shield,
   Users,
-  Wrench,
-  Zap,
-  Droplets,
-  Wind,
   Settings,
-  CheckCircle,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 
 import ScrollFloat from "@/components/scroll-float"
-import ShinyText from "@/components/shiny-text"
+
 import LoadingScreen from "@/components/loading-screen"
 import Image from "next/image"
 
@@ -93,6 +87,29 @@ const AnimatedCounter = ({ end, duration = 2, suffix = "", prefix = "" }) => {
   )
 }
 
+const AnimatedGradientBackground = () => (
+  <motion.div
+    aria-hidden
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 1 }}
+    className="absolute inset-0 z-0 overflow-hidden pointer-events-none"
+  >
+    <motion.div
+      initial={{ scale: 1, rotate: 0 }}
+      animate={{ scale: [1, 1.1, 1], rotate: [0, 10, -10, 0] }}
+      transition={{ repeat: Infinity, duration: 12, ease: "easeInOut" }}
+      className="absolute left-1/2 top-1/2 w-[120vw] h-[120vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-tr from-[#F5A62333] via-[#F5A62311] to-[#fff0] blur-3xl opacity-70"
+    />
+    <motion.div
+      initial={{ scale: 1, rotate: 0 }}
+      animate={{ scale: [1, 1.05, 1], rotate: [0, -8, 8, 0] }}
+      transition={{ repeat: Infinity, duration: 16, ease: "easeInOut" }}
+      className="absolute left-1/3 top-1/4 w-[80vw] h-[80vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-[#F5A62322] via-[#F5A62311] to-[#fff0] blur-2xl opacity-60"
+    />
+  </motion.div>
+)
+
 export default function Portfolio() {
   const [isLoading, setIsLoading] = useState(true)
   const [showContent, setShowContent] = useState(false)
@@ -143,16 +160,21 @@ export default function Portfolio() {
         {/* Hero Section - Fully responsive */}
         <section
       id="hero"
-      className="min-h-screen flex items-center justify-center px-2 sm:px-4 lg:px-8 relative bg-[#fafafa]"
+      className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-2 sm:px-4 lg:px-8 relative bg-[#fafafa] overflow-hidden"
     >
+      {/* Background Image */}
+      <Image
+        src="/images/chinese-city.jpg  "
+        alt="City in the clouds"
+        fill
+        className="object-cover object-center z-0"
+        priority
+      />
+      {/* Overlay for readability */}
+      <div className="absolute inset-0 bg-black/40 z-10" />
 
       {/* Hero Content */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 50 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="text-center max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto relative z-10 px-4"
-      >
+      <div className="relative z-20 w-full flex flex-col items-center justify-center text-center">
         {/* Logo */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -207,7 +229,7 @@ export default function Portfolio() {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="mb-8 sm:mb-12 relative px-2"
         >
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#F5A623] font-light italic relative z-10">
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#F5A623] font-light italic relative z-10 ">
             Facilities Managed. Peace Delivered.
           </p>
         </motion.div>
@@ -235,7 +257,7 @@ export default function Portfolio() {
             </a>
           </Button>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
 
         {/* About Section - Responsive */}
@@ -463,7 +485,7 @@ export default function Portfolio() {
           whileHover={{ y: -5 }}
           className="group h-full"
         >
-          <div className="h-full bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200 rounded-xl flex flex-col p-6">
+          <div className="h-full bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200 rounded-xl flex flex-col p-6 service-card group">
             <div className="mb-5 flex justify-center">
               <div className="overflow-hidden rounded-lg w-32 h-32 md:w-36 md:h-36 transition-transform duration-300 group-hover:scale-110">
                 <img
@@ -738,62 +760,113 @@ export default function Portfolio() {
 
       {/* Footer Content */}
       <footer className="relative bg-white text-gray-800 z-10 overflow-hidden">
-  {/* SVG Background Illustration */}
-  <div className="absolute bottom-0 left-0 w-full z-0 pointer-events-none select-none">
-    <img src="/images/footerGraphic.svg" alt="Facilities Illustration" className="w-full" />
-  </div>
+        {/* SVG Background Illustration */}
+        <div className="absolute bottom-0 left-0 w-full z-0 pointer-events-none select-none">
+          <img src="/images/footerGraphic.svg" alt="Facilities Illustration" className="w-full" />
+        </div>
 
-  {/* Top Content */}
-  <div className="relative z-10 max-w-7xl mx-auto px-6 pt-12 pb-60 grid grid-cols-1 lg:grid-cols-4 gap-8">
-    {/* Column 1: Logo & Description */}
-    <div>
-      <img src="/images/casa-grande-logo.png" alt="Casa Grande PropCare" className="w-40 mb-4" />
-      <p className="text-sm mb-4">Facilities Managed. Peace Delivered.</p>
-      <p className="text-sm text-gray-600">
-        Leading facility management company providing comprehensive solutions for optimal building performance and occupant satisfaction.
-      </p>
-    </div>
+        {/* Top Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12 pb-16 lg:pb-60 grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8 text-center lg:text-left items-start">
+          {/* Column 1: Logo & Description */}
+          <div className="flex flex-col items-center lg:items-start">
+            <img src="/images/casa-grande-logo.png" alt="Casa Grande PropCare" className="w-32 sm:w-40 mb-4 mx-auto lg:mx-0" />
+            <p className="text-sm mb-4">Facilities Managed. Peace Delivered.</p>
+            <p className="text-sm text-gray-600">
+              Leading facility management company providing comprehensive solutions for optimal building performance and occupant satisfaction.
+            </p>
+          </div>
 
-    {/* Column 2: Services (No icons) */}
-    <div>
-      <h4 className="font-semibold mb-2">Our Services</h4>
-      <ul className="space-y-2 text-sm text-gray-700">
-        <li>HVAC Management</li>
-        <li>Electrical Services</li>
-        <li>Plumbing & Water Management</li>
-        <li>Building Maintenance</li>
-        <li>Security Services</li>
-        <li>Housekeeping Services</li>
-      </ul>
-    </div>
+          {/* Column 2: Services (No icons) */}
+          <div>
+            <h4 className="font-semibold mb-2">Our Services</h4>
+            <ul className="space-y-2 text-sm text-gray-700">
+              <li>HVAC Management</li>
+              <li>Electrical Services</li>
+              <li>Plumbing & Water Management</li>
+              <li>Building Maintenance</li>
+              <li>Security Services</li>
+              <li>Housekeeping Services</li>
+            </ul>
+          </div>
 
-    {/* Column 3: Contact (No icons) */}
-    <div>
-      <h4 className="font-semibold mb-2">Contact Us</h4>
-      <ul className="space-y-2 text-sm text-gray-700">
-        <li>+91 9345792031</li>
-        <li>abrahamsamuel562004@gmail.com</li>
-        <li>Chennai, Tamil Nadu, India</li>
-      </ul>
-    </div>
+          {/* Column 3: Contact (No icons) */}
+          <div>
+            <h4 className="font-semibold mb-2">Contact Us</h4>
+            <ul className="space-y-2 text-sm text-gray-700">
+              <li>+91 9345792031</li>
+              <li>abrahamsamuel562004@gmail.com</li>
+              <li>Chennai, Tamil Nadu, India</li>
+            </ul>
+          </div>
 
-    {/* Column 4: Social Media (Icons shown) */}
-    <div>
-      <h4 className="font-semibold mb-2">Follow Us</h4>
-      <div className="flex gap-4 mt-2">
-        <Facebook className="w-5 h-5 text-gray-600" />
-        <Linkedin className="w-5 h-5 text-gray-600" />
-        <Instagram className="w-5 h-5 text-gray-600" />
-      </div>
-    </div>
-  </div>
+          {/* Column 4: Social Media (Icons shown) */}
+          <div className="flex flex-col items-center lg:items-start">
+            <h4 className="font-semibold mb-2">Follow Us</h4>
+            <div className="flex gap-4 mt-2 justify-center lg:justify-start">
+              <Facebook className="w-5 h-5 text-gray-600" />
+              <Linkedin className="w-5 h-5 text-gray-600" />
+              <Instagram className="w-5 h-5 text-gray-600" />
+            </div>
+          </div>
+        </div>
 
-  {/* Copyright */}
-  <div className="relative z-20 text-center text-sm text-gray-500 py-4 bg-white">
-    <div>© 2025 Casa Grande PropCare. All rights reserved.</div>
-  </div>
-</footer>
+      </footer>
 
+<style jsx global>{`
+  .shimmer-text {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer-text::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 200%; height: 100%;
+    background: linear-gradient(90deg, transparent, #fff7e6 40%, transparent 60%);
+    animation: shimmer 2.5s infinite;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  @keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+  .service-card {
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+    z-index: 1;
+    border-radius: 2.5rem; /* More curved, pill-shaped */
+    box-shadow: 0 6px 32px 0 rgba(245, 166, 35, 0.08), 0 1.5px 6px 0 rgba(0,0,0,0.04);
+    transition: box-shadow 0.3s;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(120deg, #f5a62322 0%, #fff7e6 100%);
+    opacity: 0.7;
+    transition: opacity 0.4s, filter 0.4s;
+    filter: blur(0px) brightness(1.05);
+    pointer-events: none;
+    border-radius: 2.5rem;
+  }
+  .service-card:hover::before {
+    opacity: 1;
+    filter: blur(2px) brightness(1.1);
+    background: linear-gradient(120deg, #f5a62355 0%, #fff7e6 100%);
+    animation: card-bg-move 2.5s linear infinite alternate;
+  }
+  @keyframes card-bg-move {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+  }
+  .service-card > * {
+    position: relative;
+    z-index: 1;
+  }
+`}</style>
 
     </>
   )
